@@ -1,0 +1,188 @@
+body{
+    background-color: #252440;
+    color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    min-height: 100vh;
+}
+
+/* ---------------------------------------------------- */
+/* AJUSTES MOBILE-FIRST (Estilos para celular primeiro) */
+/* ---------------------------------------------------- */
+
+.cabecalho{
+    position: relative;
+    /* Reduz a altura para telas pequenas */
+    height: 400px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.fundo{
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    /* Usa 100% da largura, mas garantindo que nunca "vaze" */
+    width: 100%; 
+    height: auto;
+    transform: translate(-50%, -50%);
+    filter: blur(2px) brightness(0.5);
+    z-index: 0;
+    /* Garante que a imagem não saia da tela */
+    min-width: 100%; 
+    min-height: 100%; 
+    object-fit: cover; /* Recorta, mas preenche a área */
+}
+
+.conteudo{
+    position: relative;
+    z-index: 1;
+}
+
+.conteudo h1{
+    /* Reduz o tamanho da fonte para celular */
+    font-size: 40px; 
+    margin-bottom: 5px;
+    animation: aparecer 1.5s ease-in-out forwards;
+    opacity: 0;
+}
+
+@keyframes aparecer{
+    from{
+    opacity: 0;
+    transform: translateY(60px);
+    } to {
+    opacity: 1;
+    transform: translateY(0px);
+    }
+}
+
+main{
+    /* Mantenha a altura flexível */
+    height: auto; 
+    /* Usa 100% da largura da tela */
+    width: 100%; 
+    padding: 0 15px; /* Adiciona um padding nas laterais para não grudar */
+    box-sizing: border-box; /* Inclui padding e borda no tamanho total */
+}
+
+h2{
+    text-align: center;
+    margin-top: 30px; /* Reduz a margem */
+    font-size: 30px; /* Reduz o tamanho da fonte */
+}
+
+/* Unifica e simplifica os estilos de texto */
+#apresentacao1, #projetos, .texto{
+    font-size: 18px; /* Tamanho confortável para leitura no celular */
+    margin-left: 0; /* Remove a margem fixa que causava o problema */
+    margin-right: 0;
+    word-spacing: 1px;
+    line-height: 1.6; /* Unidade sem medida para melhor responsividade */
+    padding: 10px 0;
+}
+
+.container {
+    /* No celular, o flexbox deve empilhar os elementos */
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.texto{
+    order: 2; /* Texto fica embaixo da imagem no celular */
+    flex: 1;
+    text-align: left;
+}
+
+.imagem{
+    order: 1; /* Imagem fica em cima do texto no celular */
+    width: 100%; /* Garante que a div ocupe a largura total */
+}
+
+.imagem img{
+    /* A largura da imagem deve ser 100% do seu container (a tela) */
+    width: 100%; 
+    height: auto;
+    margin-right: 0;
+    border-radius: 8px; /* Um toque de design */
+}
+
+a{
+    color: inherit;
+    /* Reduz o tamanho dos links/ícones no celular */
+    font-size: 35px; 
+}
+
+footer{
+    background-color: #2d2c55;
+    color: white;
+    padding: 20px 0;
+    margin-top: 50px;
+    height: auto; /* Altura automática */
+    width: 100%;
+    text-align: center;
+}
+
+footer h3{
+    margin-left: 0;
+    font-size: 20px; 
+}
+
+.icones{
+    margin: 10px;
+}
+
+/* ---------------------------------------------------- */
+/* MEDIA QUERY (Estilos para Telas Maiores que 768px)  */
+/* ---------------------------------------------------- */
+/* Quando a tela for maior que um tablet (768px), volta para o visual de PC */
+@media (min-width: 768px) {
+    
+    .cabecalho {
+        height: 700px; /* Volta para a altura original */
+    }
+
+    .conteudo h1 {
+        font-size: 90px; /* Volta para a fonte original */
+    }
+
+    main {
+        padding: 0 40px; /* Aumenta o padding lateral no PC */
+    }
+
+    /* As seções de texto voltam a ter as margens originais do PC */
+    #apresentacao1, #projetos, .texto {
+        font-size: 28px;
+        margin-left: 25px;
+        line-height: 40px;
+    }
+
+    .container {
+        /* Volta a exibir imagem e texto lado a lado */
+        flex-direction: row; 
+    }
+
+    .texto{
+        order: 1; /* Texto na esquerda no PC */
+    }
+
+    .imagem{
+        order: 2; /* Imagem na direita no PC */
+        width: auto;
+    }
+
+    .imagem img{
+        /* Volta ao tamanho fixo que você tinha para PC */
+        width: 600px; 
+        margin-right: 40px;
+    }
+
+    footer h3{
+        font-size: 26px;
+    }
+}
